@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="/css/studentPages.css">
+    
 </head>
 <body>
     <main class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-4">
-                <h1>STUDENTS</h1>
-                <ul>
-                    <li th:each="student:${stdb}">
-                        <span th:text="${student.name}"></span> <br>
-                        <span th:text="${student.weight}"></span>
-                    </li>
-                </ul>
+            <div class="col-md-8 m-3">
+                <h1 class="text-center m-6">STUDENT VIEW</h1>
+                    <div div class="d-grid col-md-3 mx-auto mt-3 mb-3">
+                        <a id="add" href="../../addStudent.html" class="btn btn-dark">Add a Student</a>
+                    </div>
+                    <div class="individ" th:style="'border-color:'+${student.hairColour}" th:each="student:${stdb}">
+                        <span th:style="'color:'+${student.hairColour}" th:text="${student.name}"></span> <br>
+                        <span th:text="${student.weight}"></span> <br>
+                        <span th:text="${student.height}"></span> <br>
+                        <span th:text="${student.hairColour}"></span> <br>
+                        <span th:text="${student.major}"></span> <br>
+                        <span th:text="${student.year}"></span> <br>
+                        <span th:style="'font-size: 1'+${student.gpa}+'pt'" th:text="${student.gpa}"></span> <br>
+                        <button class="btn btn-warning mt-3"><a id="edit" th:href="@{editStudent/{uid}(uid=${student.uid})}">Edit</a></span>
+                        <button class="btn btn-danger mt-3"><a id="delete" th:href="@{expelStudent/{uid}(uid=${student.uid})}">Expel</a></span>
+                    </div>
+                
             </div>
         </div>
     </main>
