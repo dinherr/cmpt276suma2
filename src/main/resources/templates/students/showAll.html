@@ -14,7 +14,7 @@
             <div class="col-md-8 m-3">
                 <h1 class="text-center m-6">STUDENT VIEW</h1>
                     <div div class="d-grid col-md-3 mx-auto mt-3 mb-3">
-                        <a id="add" href="../../addStudent.html" class="btn btn-dark">Add a Student</a>
+                        <a id="add" href="../../addStudent.html" class="btn btn-dark">Enroll a Student</a>
                     </div>
                     <div class="individ" th:style="'border-color:'+${student.hairColour}" th:each="student:${stdb}">
                         <span th:style="'color:'+${student.hairColour}" th:text="${student.name}"></span> <br>
