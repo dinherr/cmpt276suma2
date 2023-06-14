@@ -18,8 +18,18 @@ import com.cmpt276assn2.database.models.StudentRepo;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+
 @Controller
 public class StudentController {
+
+
+    //FUNCTIONS: ----------------------------------------
+    //getAllstudents: grabs all the students in the repository and returns them
+    //addStudent: grabs the inputs from the form and assigns them to our entity (student)
+    //editStudentForm: generates the student information by grabbing the uid from the url
+    //                 throws an error if given an invalid url
+    //updateStudent: after form is filled, update the student based on the form
+    //expelThisStudent: deletes the student based on the uid given
 
     @Autowired
     private StudentRepo studentRepo;
@@ -59,10 +69,13 @@ public class StudentController {
     @PostMapping("/students/updated/{uid}")
     public String updateStudent(@PathVariable("uid") int uid, @Validated Student student,BindingResult result){
         System.out.println("updating student...");
+        //if we're given invalid inputs (i.e. strings where it should be a int)
+        //return the form
         if (result.hasErrors()){
             return "students/editStudent";
         }
         
+        //set the uid to the student so we don't create a new user
         student.setUid(uid);
         studentRepo.save(student);
         return "students/updated";
